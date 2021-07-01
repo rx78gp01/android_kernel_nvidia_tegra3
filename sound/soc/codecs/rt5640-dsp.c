@@ -1195,7 +1195,7 @@ int do_rt5640_dsp_set_mode(struct snd_soc_codec *codec, int mode) {
 EXPORT_SYMBOL_GPL(do_rt5640_dsp_set_mode);
 
 #ifdef CONFIG_PM
-int rt5640_dsp_suspend(struct snd_soc_codec *codec, pm_message_t state)
+int rt5640_dsp_suspend(struct snd_soc_codec *codec)
 {
 	struct rt5640_dsp_param param;
 	int ret;

@@ -1910,7 +1910,6 @@ static int rt5640_set_dmic1_event(struct snd_soc_dapm_widget *w,
 	struct snd_kcontrol *kcontrol, int event)
 {
 	struct snd_soc_codec *codec = w->codec;
-	unsigned int val, mask;
 	struct rt5640_priv *rt5640 = snd_soc_codec_get_drvdata(codec);
 	mutex_lock(&rt5640->lock);
 	CHECK_I2C_SHUTDOWN(rt5640, codec)
@@ -1991,7 +1990,6 @@ static int rt5640_set_dmic2_event(struct snd_soc_dapm_widget *w,
 	struct snd_kcontrol *kcontrol, int event)
 {
 	struct snd_soc_codec *codec = w->codec;
-	unsigned int val, mask;
 	struct rt5640_priv *rt5640 = snd_soc_codec_get_drvdata(codec);
 	mutex_lock(&rt5640->lock);
 	CHECK_I2C_SHUTDOWN(rt5640, codec)
@@ -3272,7 +3270,6 @@ static int rt5640_probe(struct snd_soc_codec *codec)
 {
 	struct rt5640_priv *rt5640 = snd_soc_codec_get_drvdata(codec);
 	int ret;
-	u16 val;
 	mutex_lock(&rt5640->lock);
 	CHECK_I2C_SHUTDOWN(rt5640, codec)
 
@@ -3371,7 +3368,7 @@ static int rt5640_remove(struct snd_soc_codec *codec)
 	return 0;
 }
 #ifdef CONFIG_PM
-static int rt5640_suspend(struct snd_soc_codec *codec, pm_message_t state)
+static int rt5640_suspend(struct snd_soc_codec *codec)
 {
 	int ret = 0;
 #ifdef CONFIG_SND_SOC_RT5642
@@ -3381,7 +3378,7 @@ static int rt5640_suspend(struct snd_soc_codec *codec, pm_message_t state)
 	 * (3) DSP IIS interface power off
 	 * (4) Toggle pin of codec LDO1 to power off
 	 */
-	rt5640_dsp_suspend(codec, state);
+	rt5640_dsp_suspend(codec);
 #endif
 
 	snd_soc_update_bits(codec, RT5640_SPK_VOL,

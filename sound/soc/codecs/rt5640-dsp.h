@@ -32,7 +32,7 @@ struct rt5640_dsp_param {
 int rt5640_dsp_probe(struct snd_soc_codec *codec);
 int do_rt5640_dsp_set_mode(struct snd_soc_codec *codec, int mode);
 #ifdef CONFIG_PM
-int rt5640_dsp_suspend(struct snd_soc_codec *codec, pm_message_t state);
+int rt5640_dsp_suspend(struct snd_soc_codec *codec);
 int rt5640_dsp_resume(struct snd_soc_codec *codec);
 #endif
 
